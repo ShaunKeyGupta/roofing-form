@@ -27,12 +27,32 @@
             padding-bottom: 0;
             margin-bottom: 0;
         }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                background-color: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .printable-area {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .container {
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
 
     <div class="container mx-auto max-w-4xl p-4">
-        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-10">
+        <div id="form-container" class="bg-white rounded-2xl shadow-lg p-6 md:p-10 printable-area">
 
             <!-- Header Section -->
             <div class="text-center mb-8">
@@ -135,14 +155,19 @@
                     </div>
                 </div>
 
-                <!-- Submission Button -->
-                <div class="mt-10 pt-6 border-t border-gray-200">
-                    <button type="submit" class="w-full sm:w-auto sm:float-right inline-flex justify-center rounded-lg border border-transparent bg-blue-600 py-3 px-8 text-base font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
-                        Submit Authorization Form
-                    </button>
+                <!-- Action Buttons -->
+                <div class="mt-10 pt-6 border-t border-gray-200 no-print">
+                    <div class="flex flex-col sm:flex-row sm:justify-end sm:space-x-4 space-y-4 sm:space-y-0">
+                        <button type="button" onclick="window.print()" class="w-full sm:w-auto inline-flex justify-center rounded-lg border border-gray-300 bg-white py-3 px-8 text-base font-semibold text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
+                            Print to PDF
+                        </button>
+                        <button type="submit" class="w-full sm:w-auto inline-flex justify-center rounded-lg border border-transparent bg-blue-600 py-3 px-8 text-base font-semibold text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all">
+                            Submit Authorization Form
+                        </button>
+                    </div>
                 </div>
                  <!-- Note on Form Submission -->
-                <div class="text-center mt-20 sm:mt-16">
+                <div class="text-center mt-8 no-print">
                     <p class="text-xs text-gray-500">Note: This is a static form for display. To collect data, it must be connected to a backend service.</p>
                 </div>
 
